@@ -17,7 +17,7 @@ namespace VotingWebApp2._0.Services.Data
             bool success = false;
 
             //Sql Expression
-            string queryStrung = "Select * From dbo.Users WHERE username = @email and password = @password"; 
+            string queryString = "Select * From dbo.Users WHERE email = @email and password = @password"; 
 
             // Seperated to protect against SQL Injection Attacks
             //create and open the connection to the database inside a using block which will close the connection. 
@@ -26,7 +26,7 @@ namespace VotingWebApp2._0.Services.Data
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 //Defining the command and parameter objects 
-                SqlCommand command = new SqlCommand(queryStrung, connection);
+                SqlCommand command = new SqlCommand(queryString, connection);
                 
                 //Associating the @ values defined int the query string to the UserLogin
                 command.Parameters.Add("@email", System.Data.SqlDbType.VarChar, 150).Value = user.email;
