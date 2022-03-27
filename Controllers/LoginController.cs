@@ -34,6 +34,7 @@ namespace VotingWebApp2._0.Controllers
             {
                 //Return the login failure if incorrect details added. 
                 return View("LoginFailure");
+
             }
         }
     }
