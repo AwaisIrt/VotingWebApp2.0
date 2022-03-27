@@ -10,7 +10,7 @@ namespace VotingWebApp2._0.Services.Data
     public class DataAccess
     {
         //Connection to the databse 
-        string connectionString = "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=VotingHubDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=VotingHubDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         internal bool FindByUser(UserLogin user)
         {
             //start by assuming that user is not found.
@@ -47,6 +47,7 @@ namespace VotingWebApp2._0.Services.Data
                         success = false;
                     }
                     reader.Close();
+                    //connection.Close();
 
                 }
                 catch (Exception e)
