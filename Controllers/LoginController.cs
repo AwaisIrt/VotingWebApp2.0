@@ -16,7 +16,7 @@ namespace VotingWebApp2._0.Controllers
             return View("Login");
         }
 
-        public string Login(UserLogin userLogin)
+        public ActionResult Login(UserLogin userLogin)
         {
             // return "Result: Username = " + userLogin.email + " Password = "+ userLogin.password;
             
@@ -26,11 +26,14 @@ namespace VotingWebApp2._0.Controllers
 
             if (success)
             {
-                return "Success";
+                //Return the Login success with the what user has logged in. 
+                return View("LoginSuccess", userLogin);
+
             }
             else
             {
-                return "Try again";
+                //Return the login failure if incorrect details added. 
+                return View("LoginFailure");
             }
         }
     }
