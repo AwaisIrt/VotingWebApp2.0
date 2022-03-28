@@ -42,9 +42,9 @@
             @Html.DisplayFor(modelItem => item.statusOFCampaign)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Edit", "EditCampaign", new { id = item.campaignId }) |
+            @Html.ActionLink("Details", "CampaignDetails", new { id = item.campaignId }) |
+            @Html.ActionLink("Delete", "DeleteCampaign", new { id = item.campaignId })
         </td>
     </tr>
 }

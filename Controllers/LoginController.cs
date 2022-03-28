@@ -16,7 +16,7 @@ namespace VotingWebApp2._0.Controllers
             return View("Login");
         }
 
-        public ActionResult Login(UserModel userLogin)
+        public ActionResult SignIn(UserModel userLogin)
         {
             //Checks if the user exists using authenticate method.
             SecurityService securityService = new SecurityService();

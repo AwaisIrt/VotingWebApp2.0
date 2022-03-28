@@ -62,7 +62,7 @@ namespace VotingWebApp2._0.Controllers
 
             cands = candsDA.FetchAllCandidates();
 
-            return View("AllCandidates", cands);
+            return View("AllCandidate", cands);
         }
         public ActionResult AllCampaigns()
         {
@@ -100,13 +100,44 @@ namespace VotingWebApp2._0.Controllers
         {
             DataAccess candDA = new DataAccess();
             CandidateModel candidate = candDA.FetchOneCandidate(id);
-            return View("CandidateDetails", candidate);
+            return View("CreateCandidate", candidate);
         }
         public ActionResult EditCampaign(int id)
         {
             DataAccess campDA = new DataAccess();
             CampaignModel campaign = campDA.FetchOneCampaign(id);
-            return View("UserDetails", campaign);
+            return View("CreateCampaign", campaign);
         }
+
+        public ActionResult CampaignDetails(int id)
+        {
+
+            DataAccess campDA = new DataAccess();
+            CampaignModel campModel = campDA.FetchOneCampaign(id);
+            return View("CampaignDetails", campModel );
+        }
+        public ActionResult CandidateDetails(int id)
+        {
+
+            DataAccess candDA = new DataAccess();
+            CampaignModel candidate = candDA.FetchOneCampaign(id);
+            return View("CampaignDetails", candDA);
+        }
+
+        public ActionResult DeleteCandidate(int id)
+        {
+            DataAccess candDA = new DataAccess();
+            candDA.DeleteCandidate(id);
+            List<CandidateModel> candidate = candDA.FetchAllCandidates();
+            return View("AllCandidate", candidate);
+        }
+        public ActionResult DeleteCampaign(int id)
+        {
+            DataAccess campDA = new DataAccess();
+            campDA.DeleteCandidate(id);
+            List<CampaignModel> campaign = campDA.FetchAllCampaigns();
+            return View("AllCampaign", campaign);
+        }
+
     }
 }

@@ -36,9 +36,9 @@
             @Html.DisplayFor(modelItem => item.campaign)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Edit", "EditCandidate", new { id = item.candidateID }) |
+            @Html.ActionLink("Details", "CandidateDetails", new { id = item.candidateID }) |
+            @Html.ActionLink("Delete", "DeleteCandidate", new { id = item.candidateID })
         </td>
     </tr>
 }

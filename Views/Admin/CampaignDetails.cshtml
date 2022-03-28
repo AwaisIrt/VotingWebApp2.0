@@ -1,0 +1,51 @@
+﻿@model VotingWebApp2._0.Models.CampaignModel
+
+@{
+    ViewBag.Title = "CampaignDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CampaignDetails</h2>
+
+<div>
+    <h4>CampaignModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.campaignId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.campaignId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.campaignName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.campaignName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.campaignDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.campaignDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.statusOFCampaign)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.statusOFCampaign)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditCampaign", new {  id = Model.campaignId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

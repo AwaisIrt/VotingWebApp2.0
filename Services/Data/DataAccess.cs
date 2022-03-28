@@ -367,7 +367,7 @@ namespace VotingWebApp2._0.Services.Data
         public CandidateModel FetchOneCandidate(int id)
         {
 
-            string queryString = "Select * From dbo.Candidate WHERE Id = @Id";
+            string queryString = "Select * From dbo.Candidate WHERE candidateID = @Id";
 
 
 
@@ -408,7 +408,7 @@ namespace VotingWebApp2._0.Services.Data
         public CampaignModel FetchOneCampaign(int id)
         {
 
-            string queryString = "Select * From dbo.Campaign WHERE Id = @Id";
+            string queryString = "Select * From dbo.Campaign WHERE campaignID = @Id";
 
 
 
@@ -442,6 +442,58 @@ namespace VotingWebApp2._0.Services.Data
                 reader.Close();
 
                 return campModel;
+
+            }
+        }
+        public int DeleteCandidate(int id)
+        {
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string queryString = "DELETE FROM dbo.Candidate where candidateID = @Id";
+
+
+
+
+                //Defining the command and parameter objects 
+                SqlCommand command = new SqlCommand(queryString, connection);
+
+                //Associating parameter
+                command.Parameters.Add("@Id", System.Data.SqlDbType.Int).Value = id;
+
+                connection.Open();
+                int deltedID = command.ExecuteNonQuery();
+
+                connection.Close();
+
+                return deltedID;
+
+
+            }
+        }
+        public int DeleteCampaing(int id)
+        {
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string queryString = "DELETE FROM dbo.Campaign where campaignID = @Id";
+
+
+
+
+                //Defining the command and parameter objects 
+                SqlCommand command = new SqlCommand(queryString, connection);
+
+                //Associating parameter
+                command.Parameters.Add("@Id", System.Data.SqlDbType.Int).Value = id;
+
+                connection.Open();
+                int deltedID = command.ExecuteNonQuery();
+
+                connection.Close();
+
+                return deltedID;
+
 
             }
         }
