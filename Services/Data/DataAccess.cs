@@ -150,7 +150,7 @@ namespace VotingWebApp2._0.Services.Data
 
         // Create new /Edit
         public int CreateUser(UserModel userModel)
-        { 
+        {
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -173,14 +173,14 @@ namespace VotingWebApp2._0.Services.Data
                 command.Parameters.Add("@firstName", System.Data.SqlDbType.VarChar, 200).Value = userModel.firstName;
                 command.Parameters.Add("@lastName", System.Data.SqlDbType.VarChar, 200).Value = userModel.lastName;
                 command.Parameters.Add("@userType", System.Data.SqlDbType.VarChar, 100).Value = userModel.usertype;
-                
+
                 connection.Open();
                 int newID = command.ExecuteNonQuery();
 
                 connection.Close();
 
                 return newID;
-                
+
 
             }
         }
@@ -191,16 +191,16 @@ namespace VotingWebApp2._0.Services.Data
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string queryString = "DELETE FROM dbo.Users where id = @Id";
-               
-                
-                    
-                
+
+
+
+
                 //Defining the command and parameter objects 
                 SqlCommand command = new SqlCommand(queryString, connection);
 
                 //Associating parameter
                 command.Parameters.Add("@Id", System.Data.SqlDbType.Int).Value = id;
-                
+
                 connection.Open();
                 int deltedID = command.ExecuteNonQuery();
 
@@ -211,5 +211,240 @@ namespace VotingWebApp2._0.Services.Data
 
             }
         }
+
+        public List<CandidateModel> FetchAllCandidates()
+        {
+            List<CandidateModel> returnList = new List<CandidateModel>();
+            string queryString = "Select * From dbo.Candidate";
+
+
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //Defining the command and parameter objects 
+                SqlCommand command = new SqlCommand(queryString, connection);
+
+
+
+                //Open the database and run the command
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        //Create a new user object and add it to the list.
+                        CandidateModel Candidate = new CandidateModel();
+                        Candidate.candidateID = reader.GetInt32(0);
+                        Candidate.candidateName = reader.GetString(1);
+                        Candidate.campaign = reader.GetString(2);
+
+
+                        returnList.Add(Candidate);
+                    }
+                }
+
+                reader.Close();
+                //connection.Close();
+
+
+
+
+                return returnList;
+            }
+        }
+        public List<CampaignModel> FetchAllCampaigns()
+        {
+            List<CampaignModel> returnList = new List<CampaignModel>();
+            string queryString = "Select * From dbo.Campaign";
+
+
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //Defining the command and parameter objects 
+                SqlCommand command = new SqlCommand(queryString, connection);
+
+
+
+                //Open the database and run the command
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        //Create a new user object and add it to the list.
+                        CampaignModel Campaign = new CampaignModel();
+                        Campaign.campaignId = reader.GetInt32(0);
+                        Campaign.campaignName = reader.GetString(1);
+                        Campaign.campaignDescription = reader.GetString(2);
+                        Campaign.statusOFCampaign = reader.GetString(2);
+
+                        returnList.Add(Campaign);
+                    }
+                }
+
+                reader.Close();
+                //connection.Close();
+
+
+
+
+                return returnList;
+            }
+        }
+        public int CreateCampaign(CampaignModel campModel)
+        {
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string queryString = "";
+                if (campModel.campaignId <= 0)
+                {
+                    queryString = "INSERT INTO dbo.Campaign VALUES (@campaignName, @statusofCampaign, @campaignDescription)";
+                }
+                else
+                {
+                    queryString = "UPDATE dbo.Campaign set campaignName = @campaignName, statusofCampaign =@statusofCampaign, campaignDescription = @campaignDescription where campaignID = @Id";
+                }
+                //Defining the command and parameter objects 
+                SqlCommand command = new SqlCommand(queryString, connection);
+
+                //Associating parameter
+                command.Parameters.Add("@Id", System.Data.SqlDbType.Int).Value = campModel.campaignId;
+                command.Parameters.Add("@campaignName", System.Data.SqlDbType.Text).Value = campModel.campaignName;
+                command.Parameters.Add("@statusOFCampaign", System.Data.SqlDbType.Text).Value = campModel.statusOFCampaign;
+                command.Parameters.Add("@campaignDescription", System.Data.SqlDbType.Text).Value = campModel.campaignDescription;
+               
+
+                connection.Open();
+                int newID = command.ExecuteNonQuery();
+
+                connection.Close();
+
+                return newID;
+
+
+            }
+        }
+        public int CreateCandidate(CandidateModel candModel)
+        {
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string queryString = "";
+                if (candModel.candidateID <= 0)
+                {
+                    queryString = "INSERT INTO dbo.Candidate VALUES (@candidateName, @campaign)";
+                }
+                else
+                {
+                    queryString = "UPDATE dbo.Candidate set campaignName = @cabdidatenName, campaign = @campaign where candidateID = @Id";
+                }
+                //Defining the command and parameter objects 
+                SqlCommand command = new SqlCommand(queryString, connection);
+
+                //Associating parameter
+                command.Parameters.Add("@Id", System.Data.SqlDbType.Int).Value = candModel.candidateID;
+                command.Parameters.Add("@CandidateName", System.Data.SqlDbType.Text).Value = candModel.candidateName;
+                command.Parameters.Add("@campaign", System.Data.SqlDbType.Text).Value = candModel.campaign;
+               
+
+
+                connection.Open();
+                int newID = command.ExecuteNonQuery();
+
+                connection.Close();
+
+                return newID;
+
+
+            }
+        }
+        public CandidateModel FetchOneCandidate(int id)
+        {
+
+            string queryString = "Select * From dbo.Candidate WHERE Id = @Id";
+
+
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //Defining the command and parameter objects 
+                SqlCommand command = new SqlCommand(queryString, connection);
+
+                //Associating @id with id parameter
+                command.Parameters.Add("@Id", System.Data.SqlDbType.Int).Value = id;
+
+
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                
+                CandidateModel candidate = new CandidateModel();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        //Create a new user object and add it to the list.
+
+                        candidate.candidateID = reader.GetInt32(0);
+                        candidate.candidateName = reader.GetString(1);
+                        candidate.campaign = reader.GetString(2);
+                        
+
+
+                    }
+                }
+
+                reader.Close();
+
+                return candidate;
+
+            }
+        }
+        public CampaignModel FetchOneCampaign(int id)
+        {
+
+            string queryString = "Select * From dbo.Campaign WHERE Id = @Id";
+
+
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //Defining the command and parameter objects 
+                SqlCommand command = new SqlCommand(queryString, connection);
+
+                //Associating @id with id parameter
+                command.Parameters.Add("@Id", System.Data.SqlDbType.Int).Value = id;
+
+
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                CampaignModel campModel = new CampaignModel();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        //Create a new user object and add it to the list.
+
+                        campModel.campaignId = reader.GetInt32(0);
+                        campModel.campaignName = reader.GetString(1);
+                        campModel.campaignDescription = reader.GetString(2);
+                        campModel.statusOFCampaign = reader.GetString(3);
+
+
+                    }
+                }
+
+                reader.Close();
+
+                return campModel;
+
+            }
+        }
+
     }
 }

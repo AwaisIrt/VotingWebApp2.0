@@ -53,5 +53,60 @@ namespace VotingWebApp2._0.Controllers
             return View("UserDetails", userModel);
         }
 
+        public ActionResult AllCandidate()
+        {
+            //List of the user model
+            List<CandidateModel> cands = new List<CandidateModel>();
+            //Instance of the database where it gets the list. 
+            DataAccess candsDA = new DataAccess();
+
+            cands = candsDA.FetchAllCandidates();
+
+            return View("AllCandidates", cands);
+        }
+        public ActionResult AllCampaigns()
+        {
+            //List of the user model
+            List<CampaignModel> camps = new List<CampaignModel>();
+            //Instance of the database where it gets the list. 
+            DataAccess campaignDA = new DataAccess();
+
+            camps = campaignDA.FetchAllCampaigns();
+
+            return View("AllCampaigns", camps);
+        }
+
+        public ActionResult CreateCampaign()
+        {
+            return View("CreateCampaign");
+        }
+        public ActionResult ProcessCreateCampaign(CampaignModel campModel)
+        {
+            DataAccess campaignDA = new DataAccess();
+            int newID = campaignDA.CreateCampaign(campModel);
+            return View("CreateCampaign", campModel);
+        }
+        public ActionResult CreateCandidate()
+        {
+            return View("CreateCandidate");
+        }
+        public ActionResult ProcessCreateCandidate(CandidateModel candModel)
+        {
+            DataAccess candidateDA = new DataAccess();
+            int newID = candidateDA.CreateCandidate(candModel);
+            return View("CreateCandidate", candModel);
+        }
+        public ActionResult EditCandidate(int id)
+        {
+            DataAccess candDA = new DataAccess();
+            CandidateModel candidate = candDA.FetchOneCandidate(id);
+            return View("CandidateDetails", candidate);
+        }
+        public ActionResult EditCampaign(int id)
+        {
+            DataAccess campDA = new DataAccess();
+            CampaignModel campaign = campDA.FetchOneCampaign(id);
+            return View("UserDetails", campaign);
+        }
     }
 }
