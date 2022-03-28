@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using VotingWebApp2._0.Models;
 using VotingWebApp2._0.Services.Business;
+using VotingWebApp2._0.Services.Data;
 
 namespace VotingWebApp2._0.Controllers
 {
@@ -21,12 +22,26 @@ namespace VotingWebApp2._0.Controllers
             //Checks if the user exists using authenticate method.
             SecurityService securityService = new SecurityService();
             Boolean success = securityService.Authenticate(userLogin);
-
+            
             if (success)
             {
                 //Return the Login success with the what user has logged in. 
-                return View("LoginSuccess", userLogin);
-
+               
+                if (userLogin.usertype == "Admin" || userLogin.usertype == "admin")
+                {
+                   return RedirectToAction("Index", "Admin");
+                }
+                else
+                {
+                    if (userLogin.usertype == "Voter" || userLogin.usertype == "voter" || userLogin.usertype == null)
+                    {
+                        //return UserType = "Voter";
+                    }
+                    else if ((userLogin.usertype == "Auditor" || userLogin.usertype == "auditor"))
+                    {
+                        return RedirectToAction("Audit", "Auditor");
+                    }
+                }
             }
             else
             {
@@ -34,6 +49,7 @@ namespace VotingWebApp2._0.Controllers
                 return View("LoginFailure");
 
             }
+            return View();
         }
         public ActionResult Registration()
         {

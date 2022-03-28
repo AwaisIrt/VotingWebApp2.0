@@ -187,11 +187,13 @@
     <Content Include="Views\Admin\EditCampaign.cshtml" />
     <Content Include="Views\Admin\CampaignDetails.cshtml" />
     <Content Include="Views\Shared\_Layout - Admin.cshtml" />
+    <Content Include="Views\Auditor\Audit.cshtml" />
+    <Content Include="Views\Shared\_Layout - Auditor.cshtml" />
+    <Content Include="Views\Shared\_Layout - Voter.cshtml" />
+    <Content Include="Views\Voter\CreateVote.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Auditor\" />
-    <Folder Include="Views\Voter\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

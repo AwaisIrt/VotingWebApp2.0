@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using VotingWebApp2._0.Models;
+
 
 namespace VotingWebApp2._0.Services.Data
 {
@@ -59,6 +61,8 @@ namespace VotingWebApp2._0.Services.Data
             return success;
 
         }
+
+        
         public List<UserModel> FetchAllUsers()
         {
             List<UserModel> returnList = new List<UserModel>();
@@ -497,6 +501,77 @@ namespace VotingWebApp2._0.Services.Data
 
             }
         }
+        public List<VoteModel> FetchAllVotes()
+        {
+            List<VoteModel> returnList = new List<VoteModel>();
+            string queryString = "Select * From dbo.Vote";
 
+
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //Defining the command and parameter objects 
+                SqlCommand command = new SqlCommand(queryString, connection);
+
+
+
+                //Open the database and run the command
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        //Create a new user object and add it to the list.
+                        VoteModel vote = new VoteModel();
+                        vote.voteId = reader.GetInt32(0);
+                        vote.userId = reader.GetInt32(1);
+                        vote.campaign = reader.GetString(2);
+                        vote.Candidate = reader.GetString(3);
+                      
+
+                        returnList.Add(vote);
+                    }
+                }
+
+                reader.Close();
+                //connection.Close();
+
+
+
+
+                return returnList;
+
+            }
+        }
+        public int CreateVote(VoteModel voteModel)
+        {
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string queryString = "INSERT INTO dbo. VALUES (@voteId, @userId, @campaign, @candidate)";
+                
+                
+                //Defining the command and parameter objects 
+                SqlCommand command = new SqlCommand(queryString, connection);
+
+                //Associating parameter
+                command.Parameters.Add("@voteId", System.Data.SqlDbType.Int).Value = voteModel.voteId;
+                command.Parameters.Add("@userId", System.Data.SqlDbType.Int).Value = voteModel.userId;
+                command.Parameters.Add("@campaign", System.Data.SqlDbType.Text).Value = voteModel.campaign;
+                command.Parameters.Add("@candidate", System.Data.SqlDbType.Text).Value = voteModel.Candidate;
+                
+
+                connection.Open();
+                int newID = command.ExecuteNonQuery();
+
+                connection.Close();
+
+                return newID;
+
+
+            }
+        }
     }
 }
