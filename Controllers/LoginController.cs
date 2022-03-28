@@ -18,9 +18,7 @@ namespace VotingWebApp2._0.Controllers
 
         public ActionResult Login(UserModel userLogin)
         {
-            // return "Result: Username = " + userLogin.email + " Password = "+ userLogin.password;
-            
-            
+            //Checks if the user exists using authenticate method.
             SecurityService securityService = new SecurityService();
             Boolean success = securityService.Authenticate(userLogin);
 
