@@ -11,7 +11,7 @@ namespace VotingWebApp2._0.Controllers
     public class LoginController : Controller
     {
         // GET: Login
-        public ActionResult Index()
+        public ActionResult Login()
         {
             return View("Login");
         }
@@ -40,19 +40,7 @@ namespace VotingWebApp2._0.Controllers
             ViewBag.Message = "User Registration";
             return View();
         }
-        //Send the data to this method. 
-        [HttpPost]
-        [ValidateAntiForgeryToken]    // Validates the anti forgery token 
-        public ActionResult Registration(UserModel newUser)
-        {
-           //Checks if the input data meets the data requirements in the Usermodel to increase level of security. Protection from spoofing. 
-            if (ModelState.IsValid)
-            {
-                return RedirectToAction("Index");
-            }
-
-
-            return View();
-        }
+        
+        
     }
 }

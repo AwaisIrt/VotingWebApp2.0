@@ -27,11 +27,11 @@ namespace VotingWebApp2._0.Controllers
             
             DataAccess userDA = new DataAccess();
             UserModel user = userDA.FetchOneUser(id);
-            return View("Details", user);
+            return View("UserDetails", user);
         }
         public ActionResult CreateUser()
         {
-            return View("UserForm");
+            return View("UserForm", new UserModel());
         }
         public ActionResult EditUser(int id)
         {
