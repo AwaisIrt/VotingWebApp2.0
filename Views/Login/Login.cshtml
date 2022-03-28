@@ -1,14 +1,15 @@
-﻿@model VotingWebApp2._0.Models.UserLogin
+﻿@model VotingWebApp2._0.Models.UserModel
 
 @{
     ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Login</h2>
 
 
 @*   @using (Html.BeginForm())   *@
-@using (Html.BeginForm("Login", "Login", FormMethod.Post))
+@using (Html.BeginForm("StartUp", "Login"))
 {
     @Html.AntiForgeryToken()
 
@@ -34,15 +35,15 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Sign in" class="btn btn-default" />
+                <input type="submit" value="Log in" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+        <div>
+            @Html.ActionLink("Register", "UserForm")
+        </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

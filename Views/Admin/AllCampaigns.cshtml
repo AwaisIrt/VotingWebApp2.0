@@ -1,0 +1,52 @@
+﻿@model IEnumerable<VotingWebApp2._0.Models.CampaignModel>
+
+@{
+    ViewBag.Title = "AllCampaigns";
+    Layout = "~/Views/Shared/_Layout - Admin.cshtml";
+}
+
+<h2>AllCampaigns</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.campaignId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.campaignName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.campaignDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.statusOFCampaign)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.campaignId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.campaignName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.campaignDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.statusOFCampaign)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditCampaign", new { id = item.campaignId }) |
+            @Html.ActionLink("Details", "CampaignDetails", new { id = item.campaignId }) |
+            @Html.ActionLink("Delete", "DeleteCampaign", new { id = item.campaignId })
+        </td>
+    </tr>
+}
+
+</table>

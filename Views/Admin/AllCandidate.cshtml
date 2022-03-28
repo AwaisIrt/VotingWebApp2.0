@@ -1,0 +1,46 @@
+﻿@model IEnumerable<VotingWebApp2._0.Models.CandidateModel>
+
+@{
+    ViewBag.Title = "AllCandidate";
+    Layout = "~/Views/Shared/_Layout - Admin.cshtml";
+}
+
+<h2>AllCandidate</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.candidateID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.candidateName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.campaign)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.candidateID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.candidateName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.campaign)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditCandidate", new { id = item.candidateID }) |
+            @Html.ActionLink("Details", "CandidateDetails", new { id = item.candidateID }) |
+            @Html.ActionLink("Delete", "DeleteCandidate", new { id = item.candidateID })
+        </td>
+    </tr>
+}
+
+</table>
