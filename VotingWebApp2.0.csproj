@@ -179,11 +179,11 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\UserDetails.cshtml" />
     <Content Include="Views\Admin\UserForm.cshtml" />
-    <Content Include="Views\Admin\AllCandidates.cshtml" />
-    <Content Include="Views\Admin\AllCampaigns.cshtml" />
     <Content Include="Views\Admin\CreateCampaign.cshtml" />
     <Content Include="Views\Admin\CreateCandidate.cshtml" />
     <Content Include="Views\Admin\CandidateDetails.cshtml" />
+    <Content Include="Views\Admin\AllCandidate.cshtml" />
+    <Content Include="Views\Admin\AllCampaigns.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

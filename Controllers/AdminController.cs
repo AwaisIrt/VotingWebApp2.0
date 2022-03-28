@@ -37,7 +37,7 @@ namespace VotingWebApp2._0.Controllers
         {
             DataAccess userDA = new DataAccess();
             UserModel user = userDA.FetchOneUser(id);
-            return View("UserDetails", user);
+            return View("UserForm", user);
         }
         public ActionResult DeleteUser(int id)
         {

@@ -25,12 +25,12 @@ namespace VotingWebApp2._0
             // );
             routes.MapRoute(
               name: "Admin",
-              url: "{Admin}",
+              url: "{Admin}/{action}/{id}",
               defaults: new { controller = "Admin", action = "Index", id = UrlParameter.Optional }
               );
             routes.MapRoute(
               name: "Login",
-              url: "{Login}",
+              url: "{Login}/{action}/{id}",
               defaults: new { controller = "Login", action = "Index", id = UrlParameter.Optional }
               );
 
