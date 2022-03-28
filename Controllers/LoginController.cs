@@ -16,11 +16,11 @@ namespace VotingWebApp2._0.Controllers
             return View("Login");
         }
 
-        public ActionResult Login(UserLogin userLogin)
+        public ActionResult Login(UserModel userLogin)
         {
             // return "Result: Username = " + userLogin.email + " Password = "+ userLogin.password;
             
-            //Checks if the user exists using authenticate method.
+            
             SecurityService securityService = new SecurityService();
             Boolean success = securityService.Authenticate(userLogin);
 

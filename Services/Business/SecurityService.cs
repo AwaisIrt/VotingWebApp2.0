@@ -12,7 +12,7 @@ namespace VotingWebApp2._0.Services.Business
     {
         DataAccess daoServices = new DataAccess();
         
-        public bool Authenticate(UserLogin user)
+        public bool Authenticate(UserModel user)
         {
             return daoServices.FindByUser(user);
         }

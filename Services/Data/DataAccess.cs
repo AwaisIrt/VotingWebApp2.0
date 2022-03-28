@@ -11,7 +11,7 @@ namespace VotingWebApp2._0.Services.Data
     {
         //Connection to the databse 
         string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=VotingHubDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-        internal bool FindByUser(UserLogin user)
+        internal bool FindByUser(UserModel user)
         {
             //start by assuming that user is not found.
             bool success = false;
