@@ -14,6 +14,11 @@ namespace VotingWebApp2._0
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+              name: "Admin",
+              url: "{Admin}",
+              defaults: new { controller = "Admin", action = "Index", id = UrlParameter.Optional }
+              );
+            routes.MapRoute(
               name: "Login",
               url: "{Login}",
               defaults: new { controller = "Login", action = "Index", id = UrlParameter.Optional }
