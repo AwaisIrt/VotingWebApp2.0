@@ -8,9 +8,10 @@ namespace VotingWebApp2._0.Models
 {
     public class UserModel
     {
-        
+
         
         //Variables to link to the user table on the database.  
+        [Key]
         public int userID { get; set; }
 
         //Data annotation which allow to modify the model. 

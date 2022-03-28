@@ -161,12 +161,13 @@ namespace VotingWebApp2._0.Services.Data
                 }
                 else
                 {
-                    queryString = "UPDATE dbo.Users set email = @email, password =@password, firstName = @firstName, lastName = @lastName, userType = @userType";
+                    queryString = "UPDATE dbo.Users set email = @email, password =@password, firstName = @firstName, lastName = @lastName, userType = @userType where Id = @Id";
                 }
                 //Defining the command and parameter objects 
                 SqlCommand command = new SqlCommand(queryString, connection);
 
                 //Associating parameter
+                command.Parameters.Add("@Id", System.Data.SqlDbType.Int).Value = userModel.userID;
                 command.Parameters.Add("@email", System.Data.SqlDbType.VarChar, 150).Value = userModel.email;
                 command.Parameters.Add("@password", System.Data.SqlDbType.VarChar, 100).Value = userModel.password;
                 command.Parameters.Add("@firstName", System.Data.SqlDbType.VarChar, 200).Value = userModel.firstName;
@@ -180,6 +181,33 @@ namespace VotingWebApp2._0.Services.Data
 
                 return newID;
                 
+
+            }
+        }
+        //Delete
+        public int DeleteUser(int id)
+        {
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string queryString = "DELETE FROM dbo.Users where id = @Id";
+               
+                
+                    
+                
+                //Defining the command and parameter objects 
+                SqlCommand command = new SqlCommand(queryString, connection);
+
+                //Associating parameter
+                command.Parameters.Add("@Id", System.Data.SqlDbType.Int).Value = id;
+                
+                connection.Open();
+                int deltedID = command.ExecuteNonQuery();
+
+                connection.Close();
+
+                return deltedID;
+
 
             }
         }

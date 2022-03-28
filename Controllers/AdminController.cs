@@ -33,11 +33,24 @@ namespace VotingWebApp2._0.Controllers
         {
             return View("UserForm");
         }
+        public ActionResult EditUser(int id)
+        {
+            DataAccess userDA = new DataAccess();
+            UserModel user = userDA.FetchOneUser(id);
+            return View("UserDetails", user);
+        }
+        public ActionResult DeleteUser(int id)
+        {
+            DataAccess userDA = new DataAccess();
+            userDA.DeleteUser(id);
+            List<UserModel> users = userDA.FetchAllUsers();
+            return View("Index", users);
+        }
         public ActionResult ProcessCreateUser(UserModel userModel)
         {
             DataAccess userDA = new DataAccess();
             int newID = userDA .CreateUser(userModel);
-            return View("Details", userModel);
+            return View("UserDetails", userModel);
         }
 
     }
