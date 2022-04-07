@@ -36,6 +36,7 @@ namespace VotingWebApp2._0.Controllers
                     if (userLogin.usertype == "Voter" || userLogin.usertype == "voter" || userLogin.usertype == null)
                     {
                         //return UserType = "Voter";
+                        return RedirectToAction("CreateVote", "Voter");
                     }
                     else if ((userLogin.usertype == "Auditor" || userLogin.usertype == "auditor"))
                     {
@@ -49,7 +50,7 @@ namespace VotingWebApp2._0.Controllers
                 return View("LoginFailure");
 
             }
-            return View();
+            return RedirectToAction("Index", "Admin");
         }
         public ActionResult Registration()
         {

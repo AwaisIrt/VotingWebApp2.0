@@ -16,13 +16,13 @@ namespace VotingWebApp2._0
             routes.MapRoute(
                 name: "Auditor",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Auditor", action = "Login", id = UrlParameter.Optional }
+                defaults: new { controller = "Auditor", action = "Audit", id = UrlParameter.Optional }
                 );
 
             routes.MapRoute(
                 name: "Voter",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Voter", action = "Login", id = UrlParameter.Optional }
+                defaults: new { controller = "Voter", action = "Vote", id = UrlParameter.Optional }
                 );
 
             routes.MapRoute(
@@ -39,11 +39,7 @@ namespace VotingWebApp2._0
             
 
 
-            routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+            
         }
     }
 }

@@ -20,7 +20,7 @@ namespace VotingWebApp2._0.Controllers
 
             votes = voteDA.FetchAllVotes();
 
-            return View("Index", votes);
+            return View("Audit", votes);
         }
     }
 }

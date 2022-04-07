@@ -346,14 +346,14 @@ namespace VotingWebApp2._0.Services.Data
                 }
                 else
                 {
-                    queryString = "UPDATE dbo.Candidate set campaignName = @cabdidatenName, campaign = @campaign where candidateID = @Id";
+                    queryString = "UPDATE dbo.Candidate set candidateName = @candidateName, campaign = @campaign where candidateID = @Id";
                 }
                 //Defining the command and parameter objects 
                 SqlCommand command = new SqlCommand(queryString, connection);
 
                 //Associating parameter
                 command.Parameters.Add("@Id", System.Data.SqlDbType.Int).Value = candModel.candidateID;
-                command.Parameters.Add("@CandidateName", System.Data.SqlDbType.Text).Value = candModel.candidateName;
+                command.Parameters.Add("@candidateName", System.Data.SqlDbType.Text).Value = candModel.candidateName;
                 command.Parameters.Add("@campaign", System.Data.SqlDbType.Text).Value = candModel.campaign;
                
 
@@ -550,7 +550,7 @@ namespace VotingWebApp2._0.Services.Data
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string queryString = "INSERT INTO dbo. VALUES (@voteId, @userId, @campaign, @candidate)";
+                string queryString = "INSERT INTO dbo.Vote VALUES (@voteId, @userId, @campaign, @candidate)";
                 
                 
                 //Defining the command and parameter objects 
